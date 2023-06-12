@@ -7,7 +7,7 @@ require_once('core/includes.php');
 $controller = isset($_REQUEST['c']) ? $_REQUEST['c'] : 'Index';
 $controller .= 'Controller';
 $method = isset($_REQUEST['m']) ? $_REQUEST['m'] : 'index';
-if(!isset($_SESSION['user'])) {
+if(!isset($_SESSION['user']) && isset($_REQUEST['m']) && $_REQUEST['m'] !== "register") {
     $controller = "IndexController";
     $method = "index";
 }
@@ -19,7 +19,7 @@ if(file_exists('controller/'.$file)) {
     require_once('controller/'.$file);
     if(method_exists($controller,$method)) {
         $instance = new $controller();
-        if($_REQUEST['action']) {
+        if(isset($_REQUEST['action'])) {
             $content = $instance->$method($_REQUEST);
         } else {
             $content = $instance->$method();

@@ -1,8 +1,5 @@
 <div class="col-12 col-md-6 m-auto">
-    <form class="user-login mt-4 rounded bg-dark text-white p-4">
-        <?php if(isset($_REQUEST['registerSuccess']) && $_REQUEST['registerSuccess'] == 1) { ?>
-        <div class="text-center alert alert-success">Inscription réussie. Veuillez vous connecter maintenant.</div>
-        <?php } ?>
+    <form class="user-register mt-4 rounded bg-dark text-white p-4">
         <div class="form-group">
             <label for="username">Identifiant</label>
             <input type="text" class="form-control" name="username" id="username" placeholder="Identifiant..." />
@@ -11,11 +8,15 @@
             <label for="psswd">Mot de passe</label>
             <input type="password" class="form-control" name="psswd" id="psswd" placeholder="********" />
         </div>
+        <div class="form-group">
+            <label for="psswd2">Confirmation mot de passe</label>
+            <input type="password" class="form-control" name="psswd2" id="psswd2" placeholder="********" />
+        </div>
         <div class="text-center">
-            <input type="submit" class="btn btn-success" value="Se connecter" />
+            <input type="submit" class="btn btn-success" value="S'inscrire" />
         </div>
         <div class="text-right">
-            <a href="?c=Index&m=register" class="text-white">S'inscrire</a>
+            <a href="/qcm/" class="text-white">Se connecter</a>
         </div>
     </form>
 </div>
