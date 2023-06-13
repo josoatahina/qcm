@@ -2,15 +2,15 @@
     <form class="user-register mt-4 rounded bg-dark text-white p-4">
         <div class="form-group">
             <label for="username">Identifiant</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Identifiant..." />
+            <input type="text" class="form-control" name="username" id="username" placeholder="Identifiant..." required />
         </div>
         <div class="form-group">
             <label for="psswd">Mot de passe</label>
-            <input type="password" class="form-control" name="psswd" id="psswd" placeholder="********" />
+            <input type="password" class="form-control" name="psswd" id="psswd" placeholder="********" required />
         </div>
         <div class="form-group">
             <label for="psswd2">Confirmation mot de passe</label>
-            <input type="password" class="form-control" name="psswd2" id="psswd2" placeholder="********" />
+            <input type="password" class="form-control" name="psswd2" id="psswd2" placeholder="********" required />
         </div>
         <div class="text-center">
             <input type="submit" class="btn btn-success" value="S'inscrire" />

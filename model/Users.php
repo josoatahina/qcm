@@ -17,10 +17,13 @@ class Users extends DB
     protected function addUser($data)
     {
         try {
-            $user = $this->prepare("INSERT INTO {$this->table} (username, psswd) VALUES (?, ?, ?)");
+            $user = $this->prepare("INSERT INTO {$this->table} (username, psswd, is_admin) VALUES (?, ?, ?)");
+            $data['psswd'] = md5($data['psswd']);
             $user->bind_param('ssd', $data['username'], $data['psswd'], $data['is_admin']);
             if($user->execute()) {
                 return 1;
+            } else {
+                return 0;
             }
         } catch(Exception $e) {
             die("Erreur d'ajout d'utilisateur " . $e->getMessage());
@@ -45,9 +48,11 @@ class Users extends DB
             $user = $this->getUserByUsername($data['username']);
             if($user->num_rows > 0) {
                 $user = $user->fetch_assoc();
-                if($data['psswd'] == $user['psswd']) {
+                if(md5($data['psswd']) == $user['psswd']) {
                     $_SESSION['user'] = $data['username'];
                     return 1;
+                } else {
+                    return 0;
                 }
             }
             return $user->get_result();

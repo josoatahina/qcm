@@ -2,10 +2,12 @@
 
 class UserController extends Users
 {
-    public function addUser($data)
+    public function register($data)
     {
-        $data['is_admin'] = false;
-        return parent::addUser($data);
+        if($data['psswd'] === $data['psswd2']) {
+            $data['is_admin'] = false;
+            echo parent::addUser($data);
+        }
     }
 
     public function login($data)
@@ -13,10 +15,16 @@ class UserController extends Users
         $user = $this->getUserByUsername($data['username']);
         if($user->num_rows > 0) {
             $user = $user->fetch_assoc();
-            if($user['psswd'] == $data['psswd']) {
+            if($user['psswd'] == md5($data['psswd'])) {
                 $_SESSION['user'] = $data['username'];
-                return 1;
+                echo 1;
             }
         }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /qcm/');
     }
 }

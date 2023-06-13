@@ -35,7 +35,7 @@ class Questionnaire extends QCM
                 return 1;
             }
         } catch(Exception $e) {
-            die("Erreur d'ajout d'utilisateur " . $e->getMessage());
+            die("Erreur d'ajout de questionnaire " . $e->getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ class Questionnaire extends QCM
                 return 1;
             }
         } catch(Exception $e) {
-            die("Erreur d'ajout d'utilisateur " . $e->getMessage());
+            die("Erreur de mise à jour de questionnaire " . $e->getMessage());
         }
     }
 }

@@ -6,5 +6,3 @@
         <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
-        <div class="container">
-            <div class="row">

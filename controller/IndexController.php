@@ -4,7 +4,11 @@ class IndexController
 {
     public function index()
     {
-        require_once('views/layout/user_login.php');
+        if(isset($_SESSION['user'])) {
+            require_once('views/home.php');
+        } else {
+            require_once('views/layout/user_login.php');
+        }
     }
 
     public function register()

@@ -32,7 +32,7 @@ class QCM extends DB
                 return 1;
             }
         } catch(Exception $e) {
-            die("Erreur d'ajout d'utilisateur " . $e->getMessage());
+            die("Erreur d'ajout de qcm " . $e->getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ class QCM extends DB
                 return 1;
             }
         } catch(Exception $e) {
-            die("Erreur d'ajout d'utilisateur " . $e->getMessage());
+            die("Erreur de mise à jour de qcm " . $e->getMessage());
         }
     }
 }
