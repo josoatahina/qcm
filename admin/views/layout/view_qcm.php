@@ -1,4 +1,4 @@
-<div class="col-12 border border-secondary rounded">
+<div class="col-12 border border-secondary rounded mt-4">
     <form class="admin-update-qcm mt-4 rounded bg-dark text-white p-4" accept-charset="UTF-8">
         <input type="hidden" name="id" value="<?php echo $qcm['id']; ?>" />
         <div class="form-group">
@@ -28,9 +28,7 @@
     </form>
 </div>
 
-<div class="col-12 border border-secondary rounded mt-4">
-    <form class="form-questionnaire">
-        <div class="info-questionnaire"></div>
-        <div><button class="btn btn-success" onclick="addQuestion();">Ajouter des questions</button></div>
-    </form>
+<div class="col-12 border border-secondary rounded mt-4 mb-4">
+    <div class="info-questionnaire"></div>
+    <div class="mb-3 mt-3"><button class="btn btn-success" onclick="addQuestion();">Ajouter des questions</button></div>
 </div>

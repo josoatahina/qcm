@@ -32,11 +32,14 @@ jQuery(document).ready(function() {
         var form = jQuery(this);
         ajaxFunction("?c=Qcm&m=update&ajax=1&action=update", function(rep) {
             if(rep == 1) {
-                location.reload();
-            } else {
-                form.prepend('<div class="alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
+                jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
                 setTimeout(function() {
-                    jQuery('.alert').remove();
+                    jQuery('.dialog').remove();
+                }, 3000);
+            } else {
+                jQuery('body').append('<div class="dialog alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
+                setTimeout(function() {
+                    jQuery('.dialog').remove();
                 }, 3000);
             }
         }, form.serialize());
@@ -54,5 +57,13 @@ function deleteQcm(id) {
 }
 
 function addQuestion() {
-    jQuery('.info-questionnaire').append();
+    ajaxFunction("?c=Questionnaire&m=addMoreQuestion&ajax=1&action=add", function(rep) {
+        jQuery('.info-questionnaire').append(rep);
+    }, {index:jQuery('.add-more-question').length + 1}, 'html');
+}
+
+function addOption(i) {
+    ajaxFunction("?c=Questionnaire&m=addMoreOptions&ajax=1&action=add", function(rep) {
+        jQuery('.info-options-'+i).append(rep);
+    }, {index:jQuery('.info-options- '+i+' .add-more-option').length + 1}, 'html');
 }
