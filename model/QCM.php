@@ -2,34 +2,53 @@
 
 class QCM extends DB
 {
-    protected $table = 'qcm';
+    private $table = 'qcm';
 
-    protected function __construct()
+    public function __construct()
     {
         try {
             parent::__construct();
-            $this->query("CREATE TABLE IF NOT EXISTS {$this->table} (id INTEGER NOT NULL AUTO_INCREMENT, titre VARCHAR(255) NOT NULL, descriptions LONGTEXT, sujet VARCHAR(255), niveau VARCHAR(255) NOT NULL, nb_question INTEGER NOT NULL, CONSTRAINT pk_{$this->table} PRIMARY KEY(id))");
+            $this->query("CREATE TABLE IF NOT EXISTS {$this->table} (id INTEGER NOT NULL AUTO_INCREMENT, titre VARCHAR(255) NOT NULL, descriptions LONGTEXT, sujet VARCHAR(255), niveau VARCHAR(255) NOT NULL, CONSTRAINT pk_{$this->table} PRIMARY KEY(id))");
         } catch(Exception $e) {
-            die("Erreur de la classe User : " . $e->getMessage());
+            die("Erreur de la classe QCM : " . $e->getMessage());
         }
     }
 
-    protected function getAllQcm()
+    public function getTable()
+    {
+        return $this->table;
+    }
+
+    public function getAllQcm()
     {
         try {
-            return $this->getAllRows($this->table);
+            $query = $this->query("SELECT * FROM {$this->table}");
+            return $query->fetch_all(MYSQLI_ASSOC);
         } catch(Exception $e) {
-            die("Erreur de la classe User : " . $e->getMessage());
+            die("Erreur de récupération des QCM : " . $e->getMessage());
+        }
+    }
+
+    protected function getQcmById($id)
+    {
+        try {
+            $query = $this->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+            $query->bind_param('d', $id);
+            $query->execute();
+            return $query->get_result();
+        } catch(Exception $e) {
+            die("Erreur de récupération d'un QCM : " . $e->getMessage());
         }
     }
 
     protected function addQcm($data)
     {
         try {
-            $user = $this->prepare("INSERT INTO {$this->table} (titre,descriptions,sujet,niveau,nb_question) VALUES (?,?,?,?,?)");
-            $user->bind_param('ssssd', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['nb_question']);
-            if($user->execute()) {
-                return 1;
+            $qcm = $this->prepare("INSERT INTO {$this->table} (titre,descriptions,sujet,niveau) VALUES (?,?,?,?)");
+            $data['descriptions'] = str_replace("\n", "<br>", $data['descriptions']);
+            $qcm->bind_param('ssss', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau']);
+            if($qcm->execute()) {
+                return ['success' => 1, 'id' => $qcm->insert_id];
             }
         } catch(Exception $e) {
             die("Erreur d'ajout de qcm " . $e->getMessage());
@@ -39,9 +58,9 @@ class QCM extends DB
     protected function updateQcm($data)
     {
         try {
-            $user = $this->prepare("UPDATE SET titre = ?, descriptions = ?, sujet = ?, niveau = ?, nb_question = ? WHERE id = ?");
-            $user->bind_param('ssssdd', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['nb_question'], $data['id']);
-            if($user->execute()) {
+            $qcm = $this->prepare("UPDATE {$this->table} SET titre = ?, descriptions = ?, sujet = ?, niveau = ? WHERE id = ?");
+            $qcm->bind_param('ssssd', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']);
+            if($qcm->execute()) {
                 return 1;
             }
         } catch(Exception $e) {

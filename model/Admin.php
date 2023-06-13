@@ -5,7 +5,7 @@ class Admin extends Users
     private $username = 'Tahina54';
     private $psswd = 'admin123';
 
-    public function addAdmin()
+    protected function addAdmin()
     {
         try {
             $admin = $this->getUserByUsername($this->username);

@@ -42,6 +42,16 @@ class Users extends DB
         }
     }
 
+    public function getAllUsersWithoutAdmin()
+    {
+        try {
+            $user = $this->query("SELECT * FROM {$this->table} WHERE is_admin = false");
+            return $user->fetch_all(MYSQLI_ASSOC);
+        } catch(Exception $e) {
+            die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
+        }
+    }
+
     public function login($data)
     {
         try {

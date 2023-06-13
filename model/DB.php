@@ -36,10 +36,4 @@ class DB
     {
         return $this->mysqli->close();
     }
-
-    protected function getAllRows($table, $orderBy = 'id', $orderValue = 'DESC')
-    {
-        $query = $this->query("SELECT * FROM {$table} ORDER BY {$orderBy} {$orderValue}");
-        return $query->fetch_all(MYSQLI_ASSOC);
-    }
 }
