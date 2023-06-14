@@ -61,4 +61,15 @@ class Questionnaire extends QCM
             die("Erreur de suppression QCM " . $e->getMessage());
         }
     }
+
+    protected function getNbQuestion($id_qcm)
+    {
+        try {
+            $nb_questionnaire = $this->prepare("SELECT COUNT(*) FROM {$this->table} WHERE id_qcm = ?");
+            $nb_questionnaire->execute([$id_qcm]);
+            return $nb_questionnaire->get_result()->num_rows;
+        } catch(Exception $e) {
+            die("Erreur sur le nombre de question " . $e->getMessage());
+        }
+    }
 }

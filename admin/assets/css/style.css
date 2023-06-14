@@ -27,3 +27,18 @@
     color:#343a40!important;
     background: rgba(255,255,255);
 }
+.limit {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}
+.item-qcm {
+    transform: scale(1);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+.item-qcm:hover {
+    transform: scale(1.02);
+}

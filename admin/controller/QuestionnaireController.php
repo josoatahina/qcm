@@ -2,6 +2,19 @@
 
 class QuestionnaireController extends Questionnaire
 {
+    public function index()
+    {
+        $qcm = $this->getAllQcm();
+        if(count($qcm) > 0) {
+            foreach($qcm as $q) {
+                $nb_qcm = $this->getNbQuestion($q['id']);
+                include('views/template/qcm.php');
+            }
+        } else {
+            return '<div class="col-12"><b>Aucune QCM pour le moment.</b></div>';
+        }
+    }
+
     public function deleteQcm($data)
     {
         echo parent::deleteQcm($data['id']);

@@ -2,11 +2,6 @@
 
 class QcmController extends Qcm
 {
-    public function index()
-    {
-        /** */
-    }
-
     public function add()
     {
         require_once('views/layout/add_qcm.php');

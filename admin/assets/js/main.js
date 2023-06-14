@@ -84,3 +84,7 @@ function addOption(i) {
         jQuery('.info-options-'+i).append(rep);
     }, {indexOption:jQuery('.info-options-'+i+' .add-more-option').length + 1}, 'html');
 }
+
+function showQcm(id) {
+    window.location.href = "?c=Questionnaire&m=view&id="+id;
+}
