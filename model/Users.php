@@ -4,16 +4,6 @@ class Users extends DB
 {
     protected $table = 'users';
 
-    public function __construct()
-    {
-        try {
-            parent::__construct();
-            $this->query("CREATE TABLE IF NOT EXISTS {$this->table} (id INTEGER NOT NULL AUTO_INCREMENT, username VARCHAR(100) NOT NULL, psswd VARCHAR(100) NOT NULL, is_admin BOOLEAN DEFAULT false, CONSTRAINT pk_{$this->table} PRIMARY KEY(id), CONSTRAINT uc_{$this->table} UNIQUE (username))");
-        } catch(Exception $e) {
-            die("Erreur de la classe User : " . $e->getMessage());
-        }
-    }
-
     protected function addUser($data)
     {
         try {
@@ -27,7 +17,7 @@ class Users extends DB
         }
     }
 
-    protected function getUserByUsername($username)
+    public function getUserByUsername($username)
     {
         try {
             $user = $this->prepare("SELECT * FROM {$this->table} WHERE username = ?");
@@ -43,25 +33,6 @@ class Users extends DB
         try {
             $user = $this->query("SELECT * FROM {$this->table} WHERE is_admin = false");
             return $user->fetch_all(MYSQLI_ASSOC);
-        } catch(Exception $e) {
-            die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
-        }
-    }
-
-    public function login($data)
-    {
-        try {
-            $user = $this->getUserByUsername($data['username']);
-            if($user->num_rows > 0) {
-                $user = $user->fetch_assoc();
-                if(md5($data['psswd']) == $user['psswd']) {
-                    $_SESSION['user'] = $data['username'];
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-            return $user->get_result();
         } catch(Exception $e) {
             die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
         }

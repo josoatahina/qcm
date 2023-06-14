@@ -2,17 +2,7 @@
 
 class Questionnaire extends QCM
 {
-    protected $table = 'questionnaire';
-
-    public function __construct()
-    {
-        try {
-            parent::__construct();
-            $this->query("CREATE TABLE IF NOT EXISTS {$this->table} (id INTEGER NOT NULL AUTO_INCREMENT, texte VARCHAR(255) NOT NULL, options JSON NOT NULL, reponse INTEGER NOT NULL, id_qcm INTEGER NOT NULL, CONSTRAINT pk_{$this->table} PRIMARY KEY(id), CONSTRAINT fk_{$this->getTable()} FOREIGN KEY (id_qcm) REFERENCES {$this->getTable()} (id))");
-        } catch(Exception $e) {
-            die("Erreur de la classe Questionnaire : " . $e->getMessage());
-        }
-    }
+    private $table = 'questionnaire';
 
     protected function getAllQuestionnaire($id_qcm)
     {
@@ -82,6 +72,17 @@ class Questionnaire extends QCM
             $nb_questionnaire = $this->prepare("SELECT * FROM {$this->table} WHERE id_qcm = ?");
             $nb_questionnaire->execute([$id_qcm]);
             return $nb_questionnaire->get_result()->num_rows;
+        } catch(Exception $e) {
+            die("Erreur sur le nombre de question " . $e->getMessage());
+        }
+    }
+
+    protected function getQuestionnaireById($id)
+    {
+        try {
+            $questionnaire = $this->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+            $questionnaire->execute([$id]);
+            return $questionnaire->get_result()->fetch_assoc();
         } catch(Exception $e) {
             die("Erreur sur le nombre de question " . $e->getMessage());
         }

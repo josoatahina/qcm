@@ -4,8 +4,8 @@
             <li class="nav-item <?php if(!isset($_REQUEST['c'])) { echo 'active'; } ?>">
                 <a class="nav-link" href="/qcm/">Accueil</a>
             </li>
-        <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Qcm') { echo 'active'; } ?>">
-            <a class="nav-link" href="?c=Qcm">Questionnaire</a>
+        <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Questionnaire') { echo 'active'; } ?>">
+            <a class="nav-link" href="?c=Questionnaire">Questionnaire</a>
         </li>
         <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'User') { echo 'active'; } ?>">
             <a class="nav-link" href="?c=User">Mon compte</a>

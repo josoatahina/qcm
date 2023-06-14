@@ -5,3 +5,4 @@ require_once('model/Users.php');
 require_once('model/Admin.php');
 require_once('model/QCM.php');
 require_once('model/Questionnaire.php');
+require_once('model/CollectData.php');

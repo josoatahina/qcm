@@ -4,16 +4,6 @@ class QCM extends DB
 {
     private $table = 'qcm';
 
-    public function __construct()
-    {
-        try {
-            parent::__construct();
-            $this->query("CREATE TABLE IF NOT EXISTS {$this->table} (id INTEGER NOT NULL AUTO_INCREMENT, titre VARCHAR(255) NOT NULL, descriptions LONGTEXT, sujet VARCHAR(255), niveau VARCHAR(255) NOT NULL, CONSTRAINT pk_{$this->table} PRIMARY KEY(id))");
-        } catch(Exception $e) {
-            die("Erreur de la classe QCM : " . $e->getMessage());
-        }
-    }
-
     public function getTable()
     {
         return $this->table;

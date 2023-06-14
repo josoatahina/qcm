@@ -5,13 +5,16 @@ session_start();
 require_once('core/includes.php');
 
 $controller = isset($_REQUEST['c']) ? $_REQUEST['c'] : 'Index';
-$controller .= 'Controller';
 $method = isset($_REQUEST['m']) ? $_REQUEST['m'] : 'index';
-if(!isset($_SESSION['user']) && !isset($_REQUEST['action']) ) {
-    $controller = "IndexController";
-    $method = "index";
+
+$requiredAuth = ['Questionnaire', 'Data', 'User'];
+
+if(in_array($controller, $requiredAuth) && !isset($_SESSION['user'])) {
+    $controller = 'Index';
+    $method = 'index';
 }
 
+$controller .= 'Controller';
 $file = $controller.".php";
 
 ob_start();

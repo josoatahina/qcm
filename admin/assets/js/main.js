@@ -2,7 +2,7 @@ jQuery(document).ready(function() {
     jQuery('.admin-login').on('submit', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        ajaxFunction("?c=Admin&m=login&ajax=1&action=login", function(rep) {
+        ajaxFunction("?c=Admin&m=login&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 window.location.href = "/qcm/admin/";
             } else {
@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
     jQuery('.admin-add-qcm').on('submit', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        ajaxFunction("?c=Qcm&m=addQcm&ajax=1&action=add", function(rep) {
+        ajaxFunction("?c=Qcm&m=addQcm&ajax=1&action=1", function(rep) {
             if(rep && rep.success == 1) {
                 window.location.href = "/qcm/admin?c=Questionnaire&m=view&id="+rep.id;
             } else {
@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
     jQuery('.admin-update-qcm').on('submit', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        ajaxFunction("?c=Qcm&m=update&ajax=1&action=update", function(rep) {
+        ajaxFunction("?c=Qcm&m=update&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
                 setTimeout(function() {
@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
     jQuery(document).on('submit', '.add-more-question', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=add", function(rep) {
+        ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
                 setTimeout(function() {
@@ -65,7 +65,7 @@ jQuery(document).ready(function() {
 
 function deleteQcm(id) {
     if(confirm("Voulez-vous supprimer cette QCM ?")) {
-        ajaxFunction("?c=Questionnaire&m=deleteQcm&ajax=1&action=delete", function(rep) {
+        ajaxFunction("?c=Questionnaire&m=deleteQcm&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 window.location.href = "/qcm/admin?c=Qcm";
             }
@@ -75,7 +75,7 @@ function deleteQcm(id) {
 
 function deleteQuestion(id) {
     if(confirm("Voulez-vous supprimer cette question ?")) {
-        ajaxFunction("?c=Questionnaire&m=deleteQuestion&ajax=1&action=delete", function(rep) {
+        ajaxFunction("?c=Questionnaire&m=deleteQuestion&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 location.reload();
             }
@@ -88,13 +88,13 @@ function deleteOption(el) {
 }
 
 function addQuestion(id_qcm) {
-    ajaxFunction("?c=Questionnaire&m=addMoreQuestion&ajax=1&action=add", function(rep) {
+    ajaxFunction("?c=Questionnaire&m=addMoreQuestion&ajax=1&action=1", function(rep) {
         jQuery('.info-questionnaire').append(rep);
     }, {indexQuestion:jQuery('.add-more-question').length + 1,id_qcm:id_qcm}, 'html');
 }
 
 function addOption(i) {
-    ajaxFunction("?c=Questionnaire&m=addMoreOptions&ajax=1&action=add", function(rep) {
+    ajaxFunction("?c=Questionnaire&m=addMoreOptions&ajax=1&action=1", function(rep) {
         jQuery('.info-options-'+i).append(rep);
     }, {}, 'html');
 }

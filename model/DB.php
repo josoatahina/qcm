@@ -5,18 +5,16 @@ class DB
     private $host = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $dbname = 'qcm';
+    private $dbname = 'testqcm';
     private $mysqli;
 
     public function __construct()
     {
         try {
-            $this->mysqli = new mysqli($this->host, $this->user, $this->pass);
+            $this->mysqli = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
             if($this->mysqli->connect_errno) {
                 die("Erreur de connexion à la base de donnée : " . $this->connect_error);
             }
-            $this->mysqli->query("CREATE DATABASE IF NOT EXISTS {$this->dbname} CHARACTER SET utf8 COLLATE utf8_general_ci");
-            $this->mysqli->select_db($this->dbname);
         } catch(Exception $e) {
             die("Erreur de base de donnée : " . $e->getMessage());
         }

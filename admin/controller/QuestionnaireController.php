@@ -11,7 +11,7 @@ class QuestionnaireController extends Questionnaire
                 include('views/template/qcm.php');
             }
         } else {
-            return '<div class="col-12"><b>Aucune QCM pour le moment.</b></div>';
+            echo '<div class="col-12 mt-4"><b>Aucune QCM pour le moment.</b></div>';
         }
     }
 
