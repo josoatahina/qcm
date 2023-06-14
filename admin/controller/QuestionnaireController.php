@@ -32,8 +32,11 @@ class QuestionnaireController extends Questionnaire
 
     public function addQuestion($data)
     {
-        $data['options'] = json_encode($data['options']);
-        echo $this->addQuestionnaire($data);
+        if(isset($data['id'])) {
+            echo $this->updateQuestionnaire($data);
+        } else {
+            echo $this->addQuestionnaire($data);
+        }
     }
 
     public function view()
@@ -46,5 +49,10 @@ class QuestionnaireController extends Questionnaire
         } else {
             header('Location: /qcm/admin?c=Qcm');
         }
+    }
+
+    public function deleteQuestion($data)
+    {
+        echo parent::deleteQuestion($data['id']);
     }
 }

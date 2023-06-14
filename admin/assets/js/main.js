@@ -73,6 +73,20 @@ function deleteQcm(id) {
     }
 }
 
+function deleteQuestion(id) {
+    if(confirm("Voulez-vous supprimer cette question ?")) {
+        ajaxFunction("?c=Questionnaire&m=deleteQuestion&ajax=1&action=delete", function(rep) {
+            if(rep == 1) {
+                location.reload();
+            }
+        }, {id:id});
+    }
+}
+
+function deleteOption(el) {
+    jQuery(el).parent().remove();
+}
+
 function addQuestion(id_qcm) {
     ajaxFunction("?c=Questionnaire&m=addMoreQuestion&ajax=1&action=add", function(rep) {
         jQuery('.info-questionnaire').append(rep);
@@ -82,7 +96,7 @@ function addQuestion(id_qcm) {
 function addOption(i) {
     ajaxFunction("?c=Questionnaire&m=addMoreOptions&ajax=1&action=add", function(rep) {
         jQuery('.info-options-'+i).append(rep);
-    }, {indexOption:jQuery('.info-options-'+i+' .add-more-option').length + 1}, 'html');
+    }, {}, 'html');
 }
 
 function showQcm(id) {

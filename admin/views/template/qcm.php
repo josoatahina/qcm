@@ -3,7 +3,10 @@
         <div class="border border-primary text-center text-primary"><?php echo $q['titre']; ?></div>
         <div class="p-2 border border-primary">
             <div class="text-justify limit"><?php echo $q['descriptions']; ?></div>
-            <div class="mt-2">Nombre de question : <?php echo $nb_qcm; ?></div>
+            <div class="mt-2">
+                Difficulté : <?php echo $q['niveau']; ?><br>
+                Nombre de question : <?php echo $nb_qcm; ?>
+            </div>
         </div>
     </div>
 </div>

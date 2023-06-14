@@ -29,6 +29,7 @@ class Questionnaire extends QCM
     {
         try {
             $questionnaire = $this->prepare("INSERT INTO {$this->table} (texte,options,reponse,id_qcm) VALUES (?,?,?,?)");
+            $data['options'] = json_encode($data['options']);
             if($questionnaire->execute([$data['texte'], $data['options'], $data['reponse'], $data['id_qcm']])) {
                 return 1;
             }
@@ -41,11 +42,24 @@ class Questionnaire extends QCM
     {
         try {
             $questionnaire = $this->prepare("UPDATE {$this->table} SET texte = ?, options = ?, reponse = ?, id_qcm = ? WHERE id = ?");
-            if($questionnaire->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']])) {
+            $data['options'] = json_encode($data['options']);
+            if($questionnaire->execute([$data['texte'], $data['options'], $data['reponse'], $data['id_qcm'], $data['id']])) {
                 return 1;
             }
         } catch(Exception $e) {
             die("Erreur de mise à jour de questionnaire " . $e->getMessage());
+        }
+    }
+
+    protected function deleteQuestion($id)
+    {
+        try {
+            $questionnaire = $this->prepare("DELETE FROM {$this->table} WHERE id = ?");
+            if($questionnaire->execute([$id])) {
+                return 1;
+            }
+        } catch(Exception $e) {
+            die("Erreur de suppression QCM " . $e->getMessage());
         }
     }
 
@@ -65,7 +79,7 @@ class Questionnaire extends QCM
     protected function getNbQuestion($id_qcm)
     {
         try {
-            $nb_questionnaire = $this->prepare("SELECT COUNT(*) FROM {$this->table} WHERE id_qcm = ?");
+            $nb_questionnaire = $this->prepare("SELECT * FROM {$this->table} WHERE id_qcm = ?");
             $nb_questionnaire->execute([$id_qcm]);
             return $nb_questionnaire->get_result()->num_rows;
         } catch(Exception $e) {

@@ -28,4 +28,10 @@ class AdminController extends Admin
             }
         }
     }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /qcm/admin/');
+    }
 }

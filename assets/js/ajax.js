@@ -5,14 +5,14 @@ function ajaxFunction(url, callback, data = [], dataType = 'text') {
         data: data,
         dataType: dataType,
         beforeSend: function() {
-            jQuery('body').append('<div class="loading alert alert-warning">Patientez...</div>');
+            jQuery('body').append('<div class="dialog notification alert alert-warning">Patientez...</div>');
         },
         error: function(xhr, status, error) {
             alert(error);
         },
         success: callback,
         complete: function() {
-            jQuery('.loading').remove();
+            jQuery('.notification').remove();
         }
     });
     return false;

@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div class="col-3 text-center">
-                <div class="border border-warning">
-                    <div class="badge-warning">Taux de réussites</div>
+                <div class="border border-success">
+                    <div class="badge-success">Taux de réussites</div>
                     <div class="info">5 %</div>
                 </div>
             </div>

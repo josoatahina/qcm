@@ -42,3 +42,7 @@
 .item-qcm:hover {
     transform: scale(1.02);
 }
+.delete {
+    position: absolute;
+    right: 1.5rem;
+}
