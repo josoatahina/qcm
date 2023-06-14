@@ -5,6 +5,7 @@
 </div>
 
 <form class="col-12 mt-2 user-answer">
+    <input type="hidden" name="id_qcm" value="<?php echo $qcm['id']; ?>" />
     <?php foreach($questionnaire as $q) { ?>
     <div class="border border-dark rounded p-3 item-questionnaire mt-2 mb-2">
         <div class="mb-1">➱ <?php echo $q['texte']; ?></div>

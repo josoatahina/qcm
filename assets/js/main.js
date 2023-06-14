@@ -32,9 +32,10 @@ jQuery(document).ready(function() {
         var form = jQuery(this);
         ajaxFunction("?c=Data&m=answer&ajax=1&action=1", function(rep) {
             if(rep > 0) {
+                form.find('button').text('Patientez...');
                 form.append(' <span class="alert alert-success ml-2">Réponse envoyé.</span>');
                 setTimeout(function() {
-                    window.location.href = "?c=User";
+                    window.location.href = "?c=Data";
                 }, 2000);
             } else {
                 form.prepend('<div class="alert alert-danger">Erreur lors de votre réponse. Veuillez réessayer.</div>');

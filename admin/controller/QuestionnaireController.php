@@ -47,7 +47,7 @@ class QuestionnaireController extends Questionnaire
             $questionnaire = $this->getAllQuestionnaire($_REQUEST['id']);
             include_once('views/layout/view_qcm.php');
         } else {
-            header('Location: /qcm/admin?c=Qcm');
+            header('Location: /qcm/admin?c=Questionnaire');
         }
     }
 

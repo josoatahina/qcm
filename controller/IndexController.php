@@ -35,4 +35,10 @@ class IndexController extends Users
             }
         }
     }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /qcm/');
+    }
 }

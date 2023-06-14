@@ -7,7 +7,7 @@ require_once('core/includes.php');
 $controller = isset($_REQUEST['c']) ? $_REQUEST['c'] : 'Index';
 $method = isset($_REQUEST['m']) ? $_REQUEST['m'] : 'index';
 
-$requiredAuth = ['Questionnaire', 'Data', 'User'];
+$requiredAuth = ['Questionnaire', 'Data'];
 
 if(in_array($controller, $requiredAuth) && !isset($_SESSION['user'])) {
     $controller = 'Index';

@@ -56,9 +56,9 @@ class Questionnaire extends QCM
     protected function deleteQcm($id)
     {
         try {
-            $qcm = $this->prepare("DELETE FROM {$this->getTable()} WHERE id = ?");
             $questionnaire = $this->prepare("DELETE FROM {$this->table} WHERE id_qcm = ?");
-            if($qcm->execute([$id]) && $questionnaire->execute([$id])) {
+            $qcm = $this->prepare("DELETE FROM {$this->getTable()} WHERE id = ?");
+            if($questionnaire->execute([$id]) && $qcm->execute([$id])) {
                 return 1;
             }
         } catch(Exception $e) {

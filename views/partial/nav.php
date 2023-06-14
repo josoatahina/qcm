@@ -8,12 +8,12 @@
             <a class="nav-link" href="?c=Questionnaire">Questionnaire</a>
         </li>
         <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'User') { echo 'active'; } ?>">
-            <a class="nav-link" href="?c=User">Mon compte</a>
+            <a class="nav-link" href="?c=Data">Mes réponses</a>
         </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="?c=User&m=logout">Déconnexion</a>
+                <a class="nav-link" href="?c=Index&m=logout">Déconnexion</a>
             </li>
         </ul>
     </div>

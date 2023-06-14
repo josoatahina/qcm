@@ -51,13 +51,10 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
 CREATE TABLE IF NOT EXISTS `collect_data` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `id_qcm` INTEGER NOT NULL,
-    `id_q` INTEGER NOT NULL,
     `id_user` INTEGER NOT NULL,
-    `reponse` INTEGER NOT NULL,
-    `choisi` INTEGER NOT NULL,
+    `reponse` JSON NOT NULL,
     CONSTRAINT `pk_collect_data` PRIMARY KEY (`id`),
     CONSTRAINT `fk_qcm_collect_data` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`),
-    CONSTRAINT `fk_questionnaire_collect_data` FOREIGN KEY (`id_q`) REFERENCES `questionnaire` (`id`),
     CONSTRAINT `fk_users_collect_data` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 );
 
