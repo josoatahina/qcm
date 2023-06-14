@@ -29,6 +29,15 @@
 </div>
 
 <div class="col-12 border border-secondary rounded mt-4 mb-4">
-    <div class="info-questionnaire"></div>
-    <div class="mb-3 mt-3"><button class="btn btn-success" onclick="addQuestion();">Ajouter des questions</button></div>
+    <div class="info-questionnaire">
+        <?php
+            $i = 1;
+            foreach($questionnaire as $data) {
+                $data['indexQuestion'] = $i;
+                include('views/template/question.php');
+                $i++;
+            }
+        ?>
+    </div>
+    <div class="mb-3 mt-3"><button class="btn btn-success" onclick="addQuestion(<?php echo $qcm['id']; ?>);">Ajouter des questions</button></div>
 </div>

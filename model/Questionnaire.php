@@ -17,10 +17,9 @@ class Questionnaire extends QCM
     protected function getAllQuestionnaire($id_qcm)
     {
         try {
-            $query = $this->prepare("SELECT * FROM {$table} WHERE id_qcm = ?");
-            $query->bind_param('d', $id_qcm);
-            $query->execute();
-            return $this->get_result()->fetch_all(MYSQLI_ASSOC);
+            $query = $this->prepare("SELECT * FROM {$this->table} WHERE id_qcm = ?");
+            $query->execute([$id_qcm]);
+            return $query->get_result()->fetch_all(MYSQLI_ASSOC);
         } catch(Exception $e) {
             die("Erreur de récupération des Questionnaires : " . $e->getMessage());
         }
@@ -30,8 +29,7 @@ class Questionnaire extends QCM
     {
         try {
             $questionnaire = $this->prepare("INSERT INTO {$this->table} (texte,options,reponse,id_qcm) VALUES (?,?,?,?)");
-            $questionnaire->bind_param('sssd', $data['texte'], $data['options'], $data['reponse'], $data['id_qcm']);
-            if($questionnaire->execute()) {
+            if($questionnaire->execute([$data['texte'], $data['options'], $data['reponse'], $data['id_qcm']])) {
                 return 1;
             }
         } catch(Exception $e) {
@@ -43,8 +41,7 @@ class Questionnaire extends QCM
     {
         try {
             $questionnaire = $this->prepare("UPDATE {$this->table} SET texte = ?, options = ?, reponse = ?, id_qcm = ? WHERE id = ?");
-            $questionnaire->bind_param('sssdd', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']);
-            if($questionnaire->execute()) {
+            if($questionnaire->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']])) {
                 return 1;
             }
         } catch(Exception $e) {
@@ -56,10 +53,8 @@ class Questionnaire extends QCM
     {
         try {
             $qcm = $this->prepare("DELETE FROM {$this->getTable()} WHERE id = ?");
-            $qcm->bind_param('d', $id);
             $questionnaire = $this->prepare("DELETE FROM {$this->table} WHERE id_qcm = ?");
-            $questionnaire->bind_param('d', $id);
-            if($qcm->execute() && $questionnaire->execute()) {
+            if($qcm->execute([$id]) && $questionnaire->execute([$id])) {
                 return 1;
             }
         } catch(Exception $e) {

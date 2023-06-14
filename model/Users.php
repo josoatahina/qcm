@@ -19,11 +19,8 @@ class Users extends DB
         try {
             $user = $this->prepare("INSERT INTO {$this->table} (username, psswd, is_admin) VALUES (?, ?, ?)");
             $data['psswd'] = md5($data['psswd']);
-            $user->bind_param('ssd', $data['username'], $data['psswd'], $data['is_admin']);
-            if($user->execute()) {
+            if($user->execute([$data['username'], $data['psswd'], $data['is_admin']])) {
                 return 1;
-            } else {
-                return 0;
             }
         } catch(Exception $e) {
             die("Erreur d'ajout d'utilisateur " . $e->getMessage());
@@ -34,8 +31,7 @@ class Users extends DB
     {
         try {
             $user = $this->prepare("SELECT * FROM {$this->table} WHERE username = ?");
-            $user->bind_param('s', $username);
-            $user->execute();
+            $user->execute([$username]);
             return $user->get_result();
         } catch(Exception $e) {
             die("Erreur de récupération d'un utilisateur : " . $e->getMessage());

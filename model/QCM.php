@@ -33,8 +33,7 @@ class QCM extends DB
     {
         try {
             $query = $this->prepare("SELECT * FROM {$this->table} WHERE id = ?");
-            $query->bind_param('d', $id);
-            $query->execute();
+            $query->execute([$id]);
             return $query->get_result();
         } catch(Exception $e) {
             die("Erreur de récupération d'un QCM : " . $e->getMessage());
@@ -46,8 +45,7 @@ class QCM extends DB
         try {
             $qcm = $this->prepare("INSERT INTO {$this->table} (titre,descriptions,sujet,niveau) VALUES (?,?,?,?)");
             $data['descriptions'] = str_replace("\n", "<br>", $data['descriptions']);
-            $qcm->bind_param('ssss', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau']);
-            if($qcm->execute()) {
+            if($qcm->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau']])) {
                 return ['success' => 1, 'id' => $qcm->insert_id];
             }
         } catch(Exception $e) {
@@ -59,8 +57,7 @@ class QCM extends DB
     {
         try {
             $qcm = $this->prepare("UPDATE {$this->table} SET titre = ?, descriptions = ?, sujet = ?, niveau = ? WHERE id = ?");
-            $qcm->bind_param('ssssd', $data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']);
-            if($qcm->execute()) {
+            if($qcm->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']])) {
                 return 1;
             }
         } catch(Exception $e) {

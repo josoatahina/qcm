@@ -18,8 +18,7 @@ class CollectData extends DB
     {
         try {
             $cData = $this->prepare("INSERT INTO {$this->table} (id_qcm,id_q,reponse,choisi) VALUES (?,?,?,?)");
-            $cData->bind_param('dddd', $data['id_qcm'], $data['id_q'], $data['reponse'], $data['choisi']);
-            if($cData->execute()) {
+            if($cData->execute([$data['id_qcm'], $data['id_q'], $data['reponse'], $data['choisi']])) {
                 return 1;
             }
         } catch(Exception $e) {

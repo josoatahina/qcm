@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
         var form = jQuery(this);
         ajaxFunction("?c=Qcm&m=addQcm&ajax=1&action=add", function(rep) {
             if(rep && rep.success == 1) {
-                window.location.href = "/qcm/admin?c=Qcm&m=view&id="+rep.id;
+                window.location.href = "/qcm/admin?c=Questionnaire&m=view&id="+rep.id;
             } else {
                 form.prepend('<div class="alert alert-danger">Erreur lors de l\'ajout. Veuillez réessayer.</div>');
                 setTimeout(function() {
@@ -44,6 +44,23 @@ jQuery(document).ready(function() {
             }
         }, form.serialize());
     });
+    jQuery(document).on('submit', '.add-more-question', function(e) {
+        e.preventDefault();
+        var form = jQuery(this);
+        ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=add", function(rep) {
+            if(rep == 1) {
+                jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
+                setTimeout(function() {
+                    jQuery('.dialog').remove();
+                }, 3000);
+            } else {
+                jQuery('body').append('<div class="dialog alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
+                setTimeout(function() {
+                    jQuery('.dialog').remove();
+                }, 3000);
+            }
+        }, form.serialize());
+    });
 });
 
 function deleteQcm(id) {
@@ -56,14 +73,14 @@ function deleteQcm(id) {
     }
 }
 
-function addQuestion() {
+function addQuestion(id_qcm) {
     ajaxFunction("?c=Questionnaire&m=addMoreQuestion&ajax=1&action=add", function(rep) {
         jQuery('.info-questionnaire').append(rep);
-    }, {index:jQuery('.add-more-question').length + 1}, 'html');
+    }, {indexQuestion:jQuery('.add-more-question').length + 1,id_qcm:id_qcm}, 'html');
 }
 
 function addOption(i) {
     ajaxFunction("?c=Questionnaire&m=addMoreOptions&ajax=1&action=add", function(rep) {
         jQuery('.info-options-'+i).append(rep);
-    }, {index:jQuery('.info-options- '+i+' .add-more-option').length + 1}, 'html');
+    }, {indexOption:jQuery('.info-options-'+i+' .add-more-option').length + 1}, 'html');
 }
