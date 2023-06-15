@@ -2,17 +2,10 @@
 
 class QCM extends DB
 {
-    private $table = 'qcm';
-
-    public function getTable()
-    {
-        return $this->table;
-    }
-
     public function getAllQcm()
     {
         try {
-            $query = $this->query("SELECT * FROM {$this->table}");
+            $query = $this->query("SELECT * FROM ".TABLE_QCM."");
             return $query->fetch_all(MYSQLI_ASSOC);
         } catch(Exception $e) {
             die("Erreur de récupération des QCM : " . $e->getMessage());
@@ -22,7 +15,7 @@ class QCM extends DB
     protected function getQcmById($id)
     {
         try {
-            $query = $this->prepare("SELECT * FROM {$this->table} WHERE id = ?");
+            $query = $this->prepare("SELECT * FROM ".TABLE_QCM." WHERE id = ?");
             $query->execute([$id]);
             return $query->get_result();
         } catch(Exception $e) {
@@ -33,7 +26,7 @@ class QCM extends DB
     protected function addQcm($data)
     {
         try {
-            $qcm = $this->prepare("INSERT INTO {$this->table} (titre,descriptions,sujet,niveau) VALUES (?,?,?,?)");
+            $qcm = $this->prepare("INSERT INTO ".TABLE_QCM." (titre,descriptions,sujet,niveau) VALUES (?,?,?,?)");
             $data['descriptions'] = str_replace("\n", "<br>", $data['descriptions']);
             if($qcm->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau']])) {
                 return ['success' => 1, 'id' => $qcm->insert_id];
@@ -46,12 +39,25 @@ class QCM extends DB
     protected function updateQcm($data)
     {
         try {
-            $qcm = $this->prepare("UPDATE {$this->table} SET titre = ?, descriptions = ?, sujet = ?, niveau = ? WHERE id = ?");
+            $qcm = $this->prepare("UPDATE ".TABLE_QCM." SET titre = ?, descriptions = ?, sujet = ?, niveau = ? WHERE id = ?");
+            $data['descriptions'] = str_replace("\n", "<br>", $data['descriptions']);
             if($qcm->execute([$data['titre'], $data['descriptions'], $data['sujet'], $data['niveau'], $data['id']])) {
                 return 1;
             }
         } catch(Exception $e) {
             die("Erreur de mise à jour de qcm " . $e->getMessage());
+        }
+    }
+
+    protected function deleteQcm($id)
+    {
+        try {
+            $qcm = $this->prepare("DELETE ".TABLE_QCM.", ".TABLE_QUESTIONNAIRE.", ".TABLE_COLLECT_DATA." FROM ".TABLE_QCM." JOIN ".TABLE_QUESTIONNAIRE." ON ".TABLE_QCM.".id = ".TABLE_QUESTIONNAIRE.".id_qcm JOIN ".TABLE_QCM.".id = ".TABLE_COLLECT_DATA.".id_qcm WHERE ".TABLE_QCM.".id = ?");
+            if($qcm->execute([$id])) {
+                return 1;
+            }
+        } catch(Exception $e) {
+            die("Erreur de suppression QCM " . $e->getMessage());
         }
     }
 }

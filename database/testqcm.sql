@@ -52,7 +52,9 @@ CREATE TABLE IF NOT EXISTS `collect_data` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `id_qcm` INTEGER NOT NULL,
     `id_user` INTEGER NOT NULL,
-    `reponse` JSON NOT NULL,
+    `reponse_choisi` JSON NOT NULL,
+    `nb_bonne_reponse` INTEGER NOT NULL,
+    `nb_reponse` INTEGER NOT NULL,
     CONSTRAINT `pk_collect_data` PRIMARY KEY (`id`),
     CONSTRAINT `fk_qcm_collect_data` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`),
     CONSTRAINT `fk_users_collect_data` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)

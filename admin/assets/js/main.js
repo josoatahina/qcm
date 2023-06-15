@@ -65,7 +65,7 @@ jQuery(document).ready(function() {
 
 function deleteQcm(id) {
     if(confirm("Voulez-vous supprimer cette QCM ?")) {
-        ajaxFunction("?c=Questionnaire&m=deleteQcm&ajax=1&action=1", function(rep) {
+        ajaxFunction("?c=Qcm&m=deleteQcm&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 window.location.href = "/qcm/admin?c=Questionnaire";
             }

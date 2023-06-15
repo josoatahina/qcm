@@ -7,7 +7,7 @@
         </div>
         <div class="form-group">
             <label for="descriptions">Descriptions</label>
-            <textarea class="form-control" name="descriptions" id="descriptions" placeholder="Descriptions..." rows="5"><?php echo $qcm['descriptions']; ?></textarea>
+            <textarea class="form-control" name="descriptions" id="descriptions" placeholder="Descriptions..." rows="5"><?php echo str_replace("<br>", "\n", $qcm['descriptions']); ?></textarea>
         </div>
         <div class="form-group">
             <label for="sujet">Sujet</label>
@@ -16,10 +16,10 @@
         <div class="form-group">
             <label for="niveau">Niveau*</label>
             <select class="form-control" name="niveau" id="niveau" required>
-                <option value="Facile">Facile</option>
-                <option value="Intermédiaire">Intermédiaire</option>
-                <option value="Difficile">Difficile</option>
-                <option value="Très difficile">Très difficile</option>
+                <option value="Facile" <?php if($qcm['niveau'] == 'Facile') { echo 'selected'; } ?>>Facile</option>
+                <option value="Intermédiaire" <?php if($qcm['niveau'] == 'Intermédiaire') { echo 'selected'; } ?>>Intermédiaire</option>
+                <option value="Difficile" <?php if($qcm['niveau'] == 'Difficile') { echo 'selected'; } ?>>Difficile</option>
+                <option value="Très difficile" <?php if($qcm['niveau'] == 'Très difficile') { echo 'selected'; } ?>>Très difficile</option>
             </select>
         </div>
         <div class="text-center">

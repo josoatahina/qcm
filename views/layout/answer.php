@@ -13,7 +13,7 @@
         <?php foreach($options as $key => $value) { ?>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="reponse[<?php echo $q['id']; ?>]" value="<?php echo $key+1; ?>" required><?php echo $value; ?>
+                <input type="radio" class="form-check-input" name="reponse_choisi[<?php echo $q['id']; ?>]" value="<?php echo $key+1; ?>" required> <?php echo $value; ?>
             </label>
         </div>
         <?php } ?>

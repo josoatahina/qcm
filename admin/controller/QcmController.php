@@ -19,4 +19,9 @@ class QcmController extends Qcm
     {
         echo $this->updateQcm($data);
     }
+
+    public function deleteQcm($data)
+    {
+        echo parent::deleteQcm($data['id']);
+    }
 }

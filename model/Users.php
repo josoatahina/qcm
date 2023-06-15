@@ -2,12 +2,10 @@
 
 class Users extends DB
 {
-    protected $table = 'users';
-
     protected function addUser($data)
     {
         try {
-            $user = $this->prepare("INSERT INTO {$this->table} (username, psswd, is_admin) VALUES (?, ?, ?)");
+            $user = $this->prepare("INSERT INTO ".TABLE_USERS." (username, psswd, is_admin) VALUES (?, ?, ?)");
             $data['psswd'] = md5($data['psswd']);
             if($user->execute([$data['username'], $data['psswd'], $data['is_admin']])) {
                 return 1;
@@ -20,7 +18,7 @@ class Users extends DB
     public function getUserByUsername($username)
     {
         try {
-            $user = $this->prepare("SELECT * FROM {$this->table} WHERE username = ?");
+            $user = $this->prepare("SELECT * FROM ".TABLE_USERS." WHERE username = ?");
             $user->execute([$username]);
             return $user->get_result();
         } catch(Exception $e) {
@@ -31,10 +29,10 @@ class Users extends DB
     public function getAllUsersWithoutAdmin()
     {
         try {
-            $user = $this->query("SELECT * FROM {$this->table} WHERE is_admin = false");
+            $user = $this->query("SELECT * FROM ".TABLE_USERS." WHERE is_admin = false");
             return $user->fetch_all(MYSQLI_ASSOC);
         } catch(Exception $e) {
-            die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
+            die("Erreur de récupération de tous les utilisateurs : " . $e->getMessage());
         }
     }
 }
