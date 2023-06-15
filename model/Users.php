@@ -18,9 +18,7 @@ class Users extends DB
     public function getUserByUsername($username)
     {
         try {
-            $user = $this->prepare("SELECT * FROM ".TABLE_USERS." WHERE username = ?");
-            $user->execute([$username]);
-            return $user->get_result();
+            return $this->sql_fetch_one(TABLE_USERS, 'username', $username);
         } catch(Exception $e) {
             die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
         }

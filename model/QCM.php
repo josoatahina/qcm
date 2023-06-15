@@ -15,9 +15,7 @@ class QCM extends DB
     protected function getQcmById($id)
     {
         try {
-            $query = $this->prepare("SELECT * FROM ".TABLE_QCM." WHERE id = ?");
-            $query->execute([$id]);
-            return $query->get_result();
+            return $this->sql_fetch_one(TABLE_QCM, 'id', $id);
         } catch(Exception $e) {
             die("Erreur de récupération d'un QCM : " . $e->getMessage());
         }
