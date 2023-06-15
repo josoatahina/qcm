@@ -18,8 +18,7 @@ class QuestionnaireController extends Questionnaire
     public function answer()
     {
         $qcm = $this->getQcmById($_REQUEST['id']);
-        if($qcm->num_rows > 0) {
-            $qcm = $qcm->fetch_assoc();
+        if(count($qcm) > 0) {
             $questionnaire = $this->getAllQuestionnaire($qcm['id']);
             include_once('views/layout/answer.php');
         } else {

@@ -5,10 +5,10 @@ class DataController extends CollectData
     public function answer($data)
     {
         $user = new Users();
-        $nb_bonne_reponse = 0;
         $current_user = $user->getUserByUsername($_SESSION['user'])->fetch_assoc();
         $data['id_user'] = $current_user['id'];
         $data['nb_reponse'] = count($data['reponse_choisi']);
+        $nb_bonne_reponse = 0;
         foreach($data['reponse_choisi'] as $id => $value) {
             if($this->getReponse($id) == $value) {
                 $nb_bonne_reponse += 1;
@@ -21,6 +21,9 @@ class DataController extends CollectData
 
     public function index()
     {
-        echo "data";
+        $cdata = $this->getData();
+        foreach($cdata as $data) {
+            include('views/data.php');
+        }
     }
 }

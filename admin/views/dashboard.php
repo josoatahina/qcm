@@ -4,7 +4,7 @@
             <div class="col-12 mb-4"><h3>Bienvenu dans le tableau de bord</h3></div>
             <div class="col-3 text-center">
                 <div class="border border-primary">
-                    <div class="badge-primary">Nombre de questions</div>
+                    <div class="badge-primary">Nombre de QCM</div>
                     <div class="info"><?php echo $nb_qcm; ?></div>
                 </div>
             </div>

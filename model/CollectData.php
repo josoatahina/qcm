@@ -14,4 +14,13 @@ class CollectData extends Questionnaire
             die("Erreur d'ajout de donnée " . $e->getMessage());
         }
     }
+
+    protected function getData()
+    {
+        try {
+            return $this->getDataQCM();
+        } catch(Exception $e) {
+            die("Erreur d'ajout de donnée " . $e->getMessage());
+        }
+    }
 }

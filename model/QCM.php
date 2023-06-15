@@ -15,7 +15,7 @@ class QCM extends DB
     protected function getQcmById($id)
     {
         try {
-            return $this->sql_fetch_one(TABLE_QCM, 'id', $id);
+            return $this->sql_fetch_one(TABLE_QCM, 'id', $id)->fetch_assoc();
         } catch(Exception $e) {
             die("Erreur de récupération d'un QCM : " . $e->getMessage());
         }
@@ -56,6 +56,38 @@ class QCM extends DB
             }
         } catch(Exception $e) {
             die("Erreur de suppression QCM " . $e->getMessage());
+        }
+    }
+
+    protected function getDataQCM()
+    {
+        try {
+            $user = new Users();
+            $current_user = $user->getUserByUsername($_SESSION['user'])->fetch_assoc();
+            $data = $this->prepare("SELECT q.*, qe.id AS question_id, qe.texte, qe.options, qe.reponse, c.id AS data_id, c.reponse_choisi, c.nb_reponse FROM ".TABLE_QCM." q JOIN ".TABLE_QUESTIONNAIRE." qe ON qe.id_qcm = q.id JOIN ".TABLE_COLLECT_DATA." c ON c.id_qcm = q.id WHERE c.id_user = ? ORDER BY data_id ASC");
+            $data->execute([$current_user['id']]);
+            $data = $data->get_result();
+            $qcmData = [];
+            $q = [];
+            while($row = $data->fetch_assoc()) {
+                $q[$row['question_id']] = [
+                    'texte' => $row['texte'],
+                    'options' => json_decode($row['options'], true)
+                ];
+                $qcmData[$row['data_id']] = [
+                    'id' => $row['id'],
+                    'titre' => $row['titre'],
+                    'descriptions' => $row['descriptions'],
+                    'sujet' => $row['sujet'],
+                    'niveau' => $row['niveau'],
+                    'data_id' => $row['data_id'],
+                    'data' => json_decode($row['reponse_choisi'], true),
+                    'questionnaire' => $q
+                ];
+            }
+            return $qcmData;
+        } catch(Exception $e) {
+            die("Erreur sur la requête de questionnaire et qcm " . $e->getMessage());
         }
     }
 }

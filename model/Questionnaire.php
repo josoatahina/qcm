@@ -63,7 +63,7 @@ class Questionnaire extends QCM
         try {
             return $this->sql_fetch_one(TABLE_QUESTIONNAIRE, 'id', $id)->fetch_assoc();
         } catch(Exception $e) {
-            die("Erreur sur le nombre de question " . $e->getMessage());
+            die("Erreur sur la récupération d'une questionnaire " . $e->getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ class Questionnaire extends QCM
         try {
             return $this->sql_fetch_one(TABLE_QUESTIONNAIRE, 'id', $id)->fetch_assoc()['reponse'];
         } catch(Exception $e) {
-            die("Erreur sur le nombre de question " . $e->getMessage());
+            die("Erreur sur la bonne réponse " . $e->getMessage());
         }
     }
 }

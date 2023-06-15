@@ -11,11 +11,8 @@
         <?php
             if(isset($data['options'])) {
                 $data['options'] = json_decode($data['options'], true);
-                $i = 1;
                 foreach($data['options'] as $d) {
-                    $data['indexOption'] = $i;
                     include('options.php');
-                    $i++;
                 }
             } else {
                 include('options.php');

@@ -52,7 +52,8 @@ jQuery(document).ready(function() {
                 jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
                 setTimeout(function() {
                     jQuery('.dialog').remove();
-                }, 3000);
+                    location.reload();
+                }, 1000);
             } else {
                 jQuery('body').append('<div class="dialog alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
                 setTimeout(function() {

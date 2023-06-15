@@ -7,7 +7,7 @@
         <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Questionnaire') { echo 'active'; } ?>">
             <a class="nav-link" href="?c=Questionnaire">Questionnaire</a>
         </li>
-        <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'User') { echo 'active'; } ?>">
+        <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Data') { echo 'active'; } ?>">
             <a class="nav-link" href="?c=Data">Mes réponses</a>
         </li>
         </ul>
