@@ -21,7 +21,7 @@ class DataController extends CollectData
 
     public function index()
     {
-        $cdata = $this->getData();
+        $cdata = $this->getDataQCM();
         foreach($cdata as $data) {
             include('views/data.php');
         }

@@ -39,11 +39,11 @@ if(!isset($_REQUEST['ajax'])) {
 }
 if(isset($_SESSION['admin']) && !isset($_REQUEST['ajax'])) {
     include_once('views/partial/nav.php');
-    include_once('views/partial/content.php');
+    echo '<div class="col-10">';
 }
 echo $content;
 if(isset($_SESSION['admin']) && !isset($_REQUEST['ajax'])) {
-    include_once('views/partial/end_content.php');
+    echo '</div>';
 }
 if(!isset($_REQUEST['ajax'])) {
     include_once('views/partial/footer.php');

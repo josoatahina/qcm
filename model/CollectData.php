@@ -15,15 +15,6 @@ class CollectData extends Questionnaire
         }
     }
 
-    protected function getData()
-    {
-        try {
-            return $this->getDataQCM();
-        } catch(Exception $e) {
-            die("Erreur de récupération de donnée " . $e->getMessage());
-        }
-    }
-
     public function getNbParticipant()
     {
         try {

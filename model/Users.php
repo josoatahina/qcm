@@ -24,6 +24,15 @@ class Users extends DB
         }
     }
 
+    public function getUserById($id)
+    {
+        try {
+            return $this->sql_fetch_one(TABLE_USERS, 'id', $id);
+        } catch(Exception $e) {
+            die("Erreur de récupération d'un utilisateur : " . $e->getMessage());
+        }
+    }
+
     public function getAllUsersWithoutAdmin()
     {
         try {

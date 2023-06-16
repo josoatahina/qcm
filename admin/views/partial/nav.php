@@ -12,6 +12,9 @@
                         <a class="dropdown-item text-white <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Qcm') { echo 'active'; } ?>" href="?c=Qcm&m=add">Ajouter un QCM</a>
                     </div>
                 </li>
+                <li class="nav-item <?php if(isset($_REQUEST['c']) && $_REQUEST['c'] == 'Data') { echo 'active'; } ?>">
+                    <a class="nav-link" href="?c=Data">Toutes les réponses</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?c=Admin&m=logout">Déconnexion</a>
                 </li>

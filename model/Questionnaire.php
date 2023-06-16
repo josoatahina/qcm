@@ -76,14 +76,18 @@ class Questionnaire extends QCM
         }
     }
 
-    protected function getDataQCM()
+    protected function getDataQCM($forUser = true)
     {
         try {
-            $user = new Users();
-            $current_user = $user->getUserByUsername($_SESSION['user'])->fetch_assoc();
-            $data = $this->prepare("SELECT q.*, c.id AS data_id, c.reponse_choisi, c.nb_reponse FROM ".TABLE_QCM." q JOIN ".TABLE_COLLECT_DATA." c ON c.id_qcm = q.id WHERE c.id_user = ? ORDER BY data_id ASC");
-            $data->execute([$current_user['id']]);
-            $data = $data->get_result();
+            if($forUser) {
+                $user = new Users();
+                $current_user = $user->getUserByUsername($_SESSION['user'])->fetch_assoc();
+                $data = $this->prepare("SELECT q.*, c.id AS data_id, c.reponse_choisi, c.nb_reponse FROM ".TABLE_QCM." q JOIN ".TABLE_COLLECT_DATA." c ON c.id_qcm = q.id WHERE c.id_user = ? ORDER BY data_id ASC");
+                $data->execute([$current_user['id']]);
+                $data = $data->get_result();
+            } else {
+                $data = $this->query("SELECT q.*, c.id AS data_id, c.reponse_choisi, c.nb_reponse, c.id_user FROM ".TABLE_QCM." q JOIN ".TABLE_COLLECT_DATA." c ON c.id_qcm = q.id ORDER BY data_id DESC");
+            }
             $qcmData = [];
             while($row = $data->fetch_assoc()) {
                 $qcmData[$row['data_id']] = [
@@ -93,6 +97,7 @@ class Questionnaire extends QCM
                     'sujet' => $row['sujet'],
                     'niveau' => $row['niveau'],
                     'data_id' => $row['data_id'],
+                    'id_user' => $row['id_user'],
                     'data' => json_decode($row['reponse_choisi'], true)
                 ];
             }
