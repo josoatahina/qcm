@@ -39,7 +39,11 @@ class CollectData extends Questionnaire
                 $nb_reponse = $nb_reponse + $row['nb_reponse'];
                 $nb_reussite = $nb_reussite + $row['nb_bonne_reponse'];
             }
-            $taux_reussite = round($nb_reussite / $nb_reponse, 2);
+            if($nb_reponse == 0) {
+                $taux_reussite = 0;
+            } else {
+                $taux_reussite = round($nb_reussite / $nb_reponse, 2);
+            }
             return ($taux_reussite * 100);
         } catch(Exception $e) {
             die("Erreur de récupération du taux de succès " . $e->getMessage());

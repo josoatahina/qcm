@@ -22,8 +22,12 @@ class DataController extends CollectData
     public function index()
     {
         $cdata = $this->getDataQCM();
-        foreach($cdata as $data) {
-            include('views/data.php');
+        if(count($cdata) > 0) {
+            foreach($cdata as $data) {
+                include('views/data.php');
+            }
+        } else {
+            echo '<div class="col-12 mt-4"><b>Vous n\'avez pas encore répondu à aucune QCM.</b><div>';
         }
     }
 }
