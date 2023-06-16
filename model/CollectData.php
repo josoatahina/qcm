@@ -20,7 +20,21 @@ class CollectData extends Questionnaire
         try {
             return $this->getDataQCM();
         } catch(Exception $e) {
-            die("Erreur d'ajout de donnée " . $e->getMessage());
+            die("Erreur de récupération de donnée " . $e->getMessage());
+        }
+    }
+
+    public function getNbParticipant()
+    {
+        try {
+            $query = $this->sql_fetch_all(TABLE_COLLECT_DATA);
+            $nb_participant = [];
+            foreach($query as $row) {
+                $nb_participant[$row['id_user']] = $row['id_user'];
+            }
+            return count($nb_participant);
+        } catch(Exception $e) {
+            die("Erreur de participant " . $e->getMessage());
         }
     }
 }

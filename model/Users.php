@@ -27,8 +27,7 @@ class Users extends DB
     public function getAllUsersWithoutAdmin()
     {
         try {
-            $user = $this->query("SELECT * FROM ".TABLE_USERS." WHERE is_admin = false");
-            return $user->fetch_all(MYSQLI_ASSOC);
+            return $this->sql_fetch_one(TABLE_USERS, 'is_admin', false)->fetch_all(MYSQLI_ASSOC);
         } catch(Exception $e) {
             die("Erreur de récupération de tous les utilisateurs : " . $e->getMessage());
         }

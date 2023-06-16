@@ -5,8 +5,7 @@ class QCM extends DB
     public function getAllQcm()
     {
         try {
-            $query = $this->query("SELECT * FROM ".TABLE_QCM."");
-            return $query->fetch_all(MYSQLI_ASSOC);
+            return $this->sql_fetch_all(TABLE_QCM);
         } catch(Exception $e) {
             die("Erreur de récupération des QCM : " . $e->getMessage());
         }

@@ -10,20 +10,20 @@
             </div>
             <div class="col-3 text-center">
                 <div class="border border-secondary">
-                    <div class="badge-secondary">Nombre de participants</div>
+                    <div class="badge-secondary">Nombre d'utilisateur</div>
                     <div class="info"><?php echo $nb_users; ?></div>
+                </div>
+            </div>
+            <div class="col-3 text-center">
+                <div class="border border-danger">
+                    <div class="badge-danger">Nombre d'utilisateur ayant participé</div>
+                    <div class="info"><?php echo $participant; ?></div>
                 </div>
             </div>
             <div class="col-3 text-center">
                 <div class="border border-success">
                     <div class="badge-success">Taux de réussites</div>
                     <div class="info">5 %</div>
-                </div>
-            </div>
-            <div class="col-3 text-center">
-                <div class="border border-danger">
-                    <div class="badge-danger">Taux d'échecs</div>
-                    <div class="info">95 %</div>
                 </div>
             </div>
         </div>
