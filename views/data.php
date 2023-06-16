@@ -8,13 +8,13 @@
         <a class="btn btn-primary" data-toggle="collapse" href="#info<?php echo $data['data_id']; ?>" role="button" aria-expanded="false" aria-controls="info<?php echo $data['id']; ?>">Voir mes réponses</a>
     </div>
     <div class="mt-2 collapse" id="info<?php echo $data['data_id']; ?>">
-        <?php foreach($data['questionnaire'] as $qKey => $q) { ?>
+        <?php foreach($data['questionnaire'] as $q) { ?>
         <div class="p-2">
             <div class="mb-1">➱ <?php echo $q['texte']; ?></div>
-            <?php foreach($q['options'] as $key => $value) { ?>
+            <?php foreach(json_decode($q['options'], true) as $key => $value) { ?>
             <div class="form-check">
                 <label class="form-check-label">
-                    <input type="radio" class="form-check-input" <?php if(($key+1) == $data['data'][$qKey]) { echo 'checked'; } ?> disabled /> <?php echo $value; ?>
+                    <input type="radio" class="form-check-input" <?php if(($key+1) == $data['data'][$q['id']]) { echo 'checked'; } ?> disabled /> <?php echo $value; ?>
                 </label>
             </div>
             <?php } ?>

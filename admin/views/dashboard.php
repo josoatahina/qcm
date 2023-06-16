@@ -23,7 +23,7 @@
             <div class="col-3 text-center">
                 <div class="border border-success">
                     <div class="badge-success">Taux de réussites</div>
-                    <div class="info">5 %</div>
+                    <div class="info"><?php echo $taux_reussite; ?> %</div>
                 </div>
             </div>
         </div>

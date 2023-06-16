@@ -37,4 +37,21 @@ class CollectData extends Questionnaire
             die("Erreur de participant " . $e->getMessage());
         }
     }
+
+    public function getNbSuccess()
+    {
+        try {
+            $query = $this->sql_fetch_all(TABLE_COLLECT_DATA);
+            $nb_reponse = 0;
+            $nb_reussite = 0;
+            foreach($query as $row) {
+                $nb_reponse = $nb_reponse + $row['nb_reponse'];
+                $nb_reussite = $nb_reussite + $row['nb_bonne_reponse'];
+            }
+            $taux_reussite = round($nb_reussite / $nb_reponse, 2);
+            return ($taux_reussite * 100);
+        } catch(Exception $e) {
+            die("Erreur de récupération du taux de succès " . $e->getMessage());
+        }
+    }
 }

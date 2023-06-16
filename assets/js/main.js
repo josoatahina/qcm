@@ -21,6 +21,7 @@ jQuery(document).ready(function() {
                 window.location.href = "/qcm/";
             } else {
                 form.prepend('<div class="alert alert-danger">Erreur lors de connexion. Veuillez réessayer.</div>');
+                form[0].reset();
                 setTimeout(function() {
                     jQuery('.alert').remove();
                 }, 3000);
