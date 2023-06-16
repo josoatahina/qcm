@@ -45,7 +45,7 @@ class Questionnaire extends QCM
                 return 1;
             }
         } catch(Exception $e) {
-            die("Erreur de suppression QCM " . $e->getMessage());
+            die("Erreur de suppression de question " . $e->getMessage());
         }
     }
 
