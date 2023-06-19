@@ -12,10 +12,15 @@
         <?php foreach($data['questionnaire'] as $q) { ?>
         <div class="p-2">
             <div class="mb-1">➱ <?php echo $q['texte']; ?></div>
-            <?php foreach(json_decode($q['options'], true) as $key => $value) { ?>
+            <?php
+            $options = json_decode($q['options'], true);
+            if(!in_array($data['data'][$q['id']], $options)) { ?>
+            <div class="text-warning">Sa réponse ne fait plus partie des options.</div>
+            <?php }
+            foreach($options as $value) { ?>
             <div class="form-check">
-                <label class="form-check-label">
-                    <input type="radio" class="form-check-input" <?php if(($key+1) == $data['data'][$q['id']]) { echo 'checked'; } ?> disabled /> <?php echo $value; ?>
+                <label class="form-check-label <?php if($value == $data['data'][$q['id']] && $value == $q['reponse']) { echo 'text-success'; } elseif($value == $data['data'][$q['id']] && $value != $q['reponse']) { echo 'text-danger'; } elseif($value == $q['reponse']) { echo 'text-success'; } ?>">
+                    <input type="radio" class="form-check-input" <?php if($value == $data['data'][$q['id']]) { echo 'checked'; } ?> disabled /> <?php echo $value; ?>
                 </label>
             </div>
             <?php } ?>

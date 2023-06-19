@@ -44,8 +44,7 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
     `options` JSON NOT NULL,
     `reponse` VARCHAR(255) NOT NULL,
     `id_qcm` INTEGER NOT NULL,
-    CONSTRAINT `pk_questionnaire` PRIMARY KEY (`id`),
-    CONSTRAINT `fk_qcm` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`)
+    CONSTRAINT `pk_questionnaire` PRIMARY KEY (`id`)
 );
 
 --
@@ -60,7 +59,6 @@ CREATE TABLE IF NOT EXISTS `collect_data` (
     `nb_bonne_reponse` INTEGER NOT NULL,
     `nb_reponse` INTEGER NOT NULL,
     CONSTRAINT `pk_collect_data` PRIMARY KEY (`id`),
-    CONSTRAINT `fk_qcm_collect_data` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`),
     CONSTRAINT `fk_users_collect_data` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 );
 

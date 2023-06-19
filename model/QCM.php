@@ -49,7 +49,7 @@ class QCM extends DB
     protected function deleteQcm($id)
     {
         try {
-            $qcm = $this->prepare("DELETE qe, c, q FROM ".TABLE_QUESTIONNAIRE." qe LEFT JOIN ".TABLE_COLLECT_DATA." c ON c.id_qcm = qe.id_qcm RIGHT JOIN ".TABLE_QCM." q ON qe.id_qcm = q.id WHERE qe.id_qcm = ?");
+            $qcm = $this->prepare("DELETE q, qe, c FROM ".TABLE_QCM." q LEFT JOIN ".TABLE_QUESTIONNAIRE." qe ON q.id = qe.id_qcm LEFT JOIN ".TABLE_COLLECT_DATA." c ON q.id = c.id_qcm WHERE q.id = ?");
             if($qcm->execute([$id])) {
                 return 1;
             }

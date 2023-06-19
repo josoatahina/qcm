@@ -25,3 +25,7 @@ body {
             line-clamp: 3; 
     -webkit-box-orient: vertical;
 }
+.logout {
+    right: 0;
+    left: auto;
+}
