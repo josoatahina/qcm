@@ -2,6 +2,10 @@
 -- Base de données : `testqcm`
 --
 
+CREATE DATABASE IF NOT EXISTS `testqcm` CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+USE `testqcm`;
+
 -- --------------------------------------------------------
 
 --

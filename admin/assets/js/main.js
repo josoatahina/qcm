@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
     jQuery(document).on('submit', '.add-more-question', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=1", function(rep) {
+        /* ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=1", function(rep) {
             if(rep == 1) {
                 jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
                 setTimeout(function() {
@@ -60,7 +60,7 @@ jQuery(document).ready(function() {
                     jQuery('.dialog').remove();
                 }, 3000);
             }
-        }, form.serialize());
+        }, form.serialize()); */
     });
 });
 
