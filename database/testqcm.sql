@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `questionnaire` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `texte` VARCHAR(255) NOT NULL,
     `options` JSON NOT NULL,
-    `reponse` INTEGER NOT NULL,
+    `reponse` VARCHAR(255) NOT NULL,
     `id_qcm` INTEGER NOT NULL,
     CONSTRAINT `pk_questionnaire` PRIMARY KEY (`id`),
     CONSTRAINT `fk_qcm` FOREIGN KEY (`id_qcm`) REFERENCES `qcm` (`id`)

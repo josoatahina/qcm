@@ -20,8 +20,8 @@
         ?>
     </div>
     <div class="form-group">
-        <label for="reponse<?php echo $data['indexQuestion']; ?>">Bonne réponse (entrez juste le numéro de l'option cité ci-dessus)</label>
-        <input type="number" class="form-control" name="reponse" id="reponse<?php echo $data['indexQuestion']; ?>" placeholder="3" value="<?php if(isset($data['reponse'])) { echo $data['reponse']; } ?>" required />
+        <label for="reponse<?php echo $data['indexQuestion']; ?>">Entrer la bonne réponse</label>
+        <input type="text" class="form-control" name="reponse" id="reponse<?php echo $data['indexQuestion']; ?>" placeholder="3" value="<?php if(isset($data['reponse'])) { echo $data['reponse']; } ?>" required />
     </div>
     <div><span class="btn btn-success" onclick="addOption(<?php echo $data['indexQuestion']; ?>)">Ajouter option</span> <button class="btn btn-primary">Mettre à jour</button></div>
 </form>

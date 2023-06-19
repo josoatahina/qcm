@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
         var form = jQuery(this);
         ajaxFunction("?c=Index&m=checkRegister&ajax=1&action=1", function(rep) {
             if(rep == 1) {
-                window.location.href = "/qcm/?registerSuccess=1";
+                window.location.href = "/qcm/";
             } else {
                 form.prepend('<div class="alert alert-danger">Erreur lors de l\'inscription. Veuillez réessayer.</div>');
                 setTimeout(function() {

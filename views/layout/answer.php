@@ -10,10 +10,10 @@
     <div class="border border-dark rounded p-3 item-questionnaire mt-2 mb-2">
         <div class="mb-1">➱ <?php echo $q['texte']; ?></div>
         <?php $options = json_decode($q['options'], true); ?>
-        <?php foreach($options as $key => $value) { ?>
+        <?php foreach($options as $option) { ?>
         <div class="form-check">
             <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="reponse_choisi[<?php echo $q['id']; ?>]" value="<?php echo $key+1; ?>" required> <?php echo $value; ?>
+                <input type="radio" class="form-check-input" name="reponse_choisi[<?php echo $q['id']; ?>]" value="<?php echo $option; ?>" required> <?php echo $option; ?>
             </label>
         </div>
         <?php } ?>

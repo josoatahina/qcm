@@ -20,7 +20,11 @@ class IndexController extends Users
     {
         if($data['psswd'] === $data['psswd2']) {
             $data['is_admin'] = 0;
-            echo $this->addUser($data);
+            $check = $this->addUser($data);
+            if($check == 1) {
+                $_SESSION['user'] = $data['username'];
+                echo 1;
+            }
         }
     }
 
