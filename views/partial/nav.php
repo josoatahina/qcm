@@ -12,8 +12,11 @@
         </li>
         </ul>
         <ul class="navbar-nav my-2 my-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="?c=Index&m=logout">Déconnexion</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><?php echo $_SESSION['user']; ?></a>
+                <div class="dropdown-menu bg-dark">
+                    <a class="dropdown-item" href="?c=Index&m=logout">Déconnexion</a>
+                </div>
             </li>
         </ul>
     </div>

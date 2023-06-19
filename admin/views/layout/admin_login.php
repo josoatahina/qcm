@@ -1,4 +1,4 @@
-<div class="col-12 col-md-4 m-auto">
+<div class="col-lg-4 col-md-12 m-auto">
     <form class="admin-login mt-4 rounded bg-dark text-white p-4">
         <div class="form-group">
             <label for="username">Identifiant</label>

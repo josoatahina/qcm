@@ -1,4 +1,4 @@
-<div class="col-12 col-md-6 m-auto">
+<div class="col-lg-6 col-md-12 m-auto">
     <form class="user-login mt-4 rounded bg-dark text-white p-4">
         <?php if(isset($_REQUEST['registerSuccess']) && $_REQUEST['registerSuccess'] == 1) { ?>
         <div class="text-center alert alert-success">Inscription réussie. Veuillez vous connecter maintenant.</div>
