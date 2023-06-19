@@ -47,20 +47,31 @@ jQuery(document).ready(function() {
     jQuery(document).on('submit', '.add-more-question', function(e) {
         e.preventDefault();
         var form = jQuery(this);
-        /* ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=1", function(rep) {
-            if(rep == 1) {
-                jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
-                setTimeout(function() {
-                    jQuery('.dialog').remove();
-                    location.reload();
-                }, 1000);
-            } else {
-                jQuery('body').append('<div class="dialog alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
-                setTimeout(function() {
-                    jQuery('.dialog').remove();
-                }, 3000);
-            }
-        }, form.serialize()); */
+        var data = form.serialize();
+        var params = new URLSearchParams(data);
+        var reponse = params.get('reponse');
+        var options = params.getAll('options[]');
+        if(options.includes(reponse)) {
+            ajaxFunction("?c=Questionnaire&m=addQuestion&ajax=1&action=1", function(rep) {
+                if(rep == 1) {
+                    jQuery('body').append('<div class="dialog alert alert-success">Mise à jour avec succès.</div>');
+                    setTimeout(function() {
+                        jQuery('.dialog').remove();
+                        location.reload();
+                    }, 1000);
+                } else {
+                    jQuery('body').append('<div class="dialog alert alert-danger">Erreur lors de la mise à jour. Veuillez réessayer.</div>');
+                    setTimeout(function() {
+                        jQuery('.dialog').remove();
+                    }, 3000);
+                }
+            }, data);
+        } else {
+            jQuery('body').append('<div class="dialog alert alert-danger">La réponse ne fait pas partie des options.</div>');
+            setTimeout(function() {
+                jQuery('.dialog').remove();
+            }, 3000);
+        }
     });
 });
 

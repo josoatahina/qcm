@@ -16,7 +16,7 @@
             </div>
             <div class="col-3 text-center">
                 <div class="border border-danger">
-                    <div class="badge-danger">Nombre d'utilisateur ayant participé</div>
+                    <div class="badge-danger">Utilisateur ayant participé</div>
                     <div class="info"><?php echo $participant; ?></div>
                 </div>
             </div>
