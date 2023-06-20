@@ -29,3 +29,18 @@ body {
     right: 0;
     left: auto;
 }
+@media (max-width: 991.98px) {
+    .navbar-expand-lg {
+        display: none;
+    }
+    #navMenu {
+        position: absolute;
+        z-index: 9;
+        width: 100%;
+    }
+}
+@media (min-width: 992px) {
+    .nav-mobile {
+        display: none;
+    }
+}
