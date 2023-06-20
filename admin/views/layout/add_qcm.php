@@ -1,4 +1,4 @@
-<div class="col-12 col-md-7 m-auto">
+<div class="col-md-12 col-lg-7 m-auto">
     <form class="admin-add-qcm mt-4 rounded bg-dark text-white p-4" accept-charset="UTF-8">
         <h3 class="text-center badge-secondary">Ajout QCM</h3>
         <div class="form-group">
