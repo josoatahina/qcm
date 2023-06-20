@@ -1,4 +1,4 @@
-<div class="col-3 mt-4 item-qcm" onclick="showQcm(<?php echo $q['id']; ?>)">
+<div class="col-12 col-lg-3 mt-4 item-qcm" onclick="showQcm(<?php echo $q['id']; ?>)">
     <div class="border border-primary">
         <div class="border border-primary text-center text-primary"><?php echo $q['titre']; ?></div>
         <div class="p-2 border border-primary">
