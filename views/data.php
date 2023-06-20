@@ -8,6 +8,9 @@
         <a class="btn btn-primary" data-toggle="collapse" href="#info<?php echo $data['data_id']; ?>" role="button" aria-expanded="false" aria-controls="info<?php echo $data['id']; ?>">Voir mes réponses</a>
     </div>
     <div class="mt-2 collapse" id="info<?php echo $data['data_id']; ?>">
+        <?php if(count($data['questionnaire']) !== count($data['data'])) { ?>
+        <div class="p-2 text-danger"><?php $nb = count($data['data']) - count($data['questionnaire']); echo $nb; ?> <?php if($nb > 1) { echo "questions ont été supprimées."; } else { echo "question a été supprimée."; } ?> </div>
+        <?php } ?>
         <?php foreach($data['questionnaire'] as $q) { ?>
         <div class="p-2">
             <div class="mb-1">➱ <?php echo $q['texte']; ?></div>
