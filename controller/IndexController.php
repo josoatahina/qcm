@@ -33,7 +33,7 @@ class IndexController extends Users
         $user = $this->getUserByUsername($data['username']);
         if($user->num_rows > 0) {
             $user = $user->fetch_assoc();
-            if($user['psswd'] == md5($data['psswd'])) {
+            if($user['psswd'] == md5($data['psswd']) && $user['is_admin'] == false) {
                 $_SESSION['user'] = $data['username'];
                 echo 1;
             }

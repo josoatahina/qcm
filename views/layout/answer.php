@@ -19,5 +19,5 @@
         <?php } ?>
     </div>
     <?php } ?>
-    <button class="btn btn-primary">Valider</button>
+    <?php if(count($questionnaire) > 0) { ?><button class="btn btn-primary">Valider</button><?php } else { ?><span class="bg-secondary p-2 rounded text-white">Question pas prêt !!!</span><?php } ?>
 </form>

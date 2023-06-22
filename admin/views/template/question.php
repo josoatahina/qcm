@@ -1,4 +1,4 @@
-<form class="add-more-question border border-secondary m-4 p-4 position-relative" accept-charset="UTF-8">
+<form class="add-more-question border border-secondary m-4 p-4 position-relative" accept-charset="UTF-8"  autocomplete="off">
     <?php if(isset($data['id'])) { ?><span class="btn btn-light delete" onclick="deleteQuestion(<?php echo $data['id']; ?>)">❌</span><?php } ?>
     <input type="hidden" name="id_qcm" value="<?php echo $data['id_qcm']; ?>" />
     <?php if(isset($data['id'])) { ?><input type="hidden" name="id" value="<?php echo $data['id']; ?>" /><?php } ?>
