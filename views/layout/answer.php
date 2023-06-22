@@ -1,7 +1,7 @@
 <div class="col-12 mt-4">
     <h1 class="title position-relative"><?php echo $qcm['titre']; ?></h1>
-    <p class="mt-5 text-justify"><?php echo $qcm['descriptions']; ?></p>
-    <p class="mt-2"><u>Niveau</u> : <?php echo $qcm['niveau']; ?><?php if(isset($qcm['sujet'])) { ?>, <u>Sujet</u> : <?php echo $qcm['sujet']; ?><?php } ?></p>
+    <p class="mt-5 text-justify"><?php if($qcm['descriptions']) { echo $qcm['descriptions']; } else { echo "Aucune description."; } ?></p>
+    <p class="mt-2"><u>Niveau</u> : <?php echo $qcm['niveau']; ?><?php if($qcm['sujet']) { ?>, <u>Sujet</u> : <?php echo $qcm['sujet']; ?><?php } ?></p>
 </div>
 
 <form class="col-12 mt-2 user-answer">

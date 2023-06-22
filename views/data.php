@@ -1,6 +1,9 @@
 <div class="col-12 mt-4 border border-secondary rounded p-2">
     <h4><?php echo $data['titre']; ?></h4>
     <div class="mt-3">
+        <?php if($data['sujet']) {
+            echo "Sujet : " . $data['sujet'] . "<br>";
+        } ?>
         Nombre de question : <?php echo count($data['questionnaire']); ?><br>
         Niveau : <?php echo $data['niveau']; ?>
     </div>
